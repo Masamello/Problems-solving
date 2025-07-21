@@ -1,7 +1,6 @@
 const fiboGenerator = function*(){
     yield 0;
     yield 1;
-    while()
 }
 const gen = fiboGenerator();
 
