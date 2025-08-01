@@ -100,13 +100,34 @@ const findMedian = (arr) =>{
     const len = arr.length;
     if(len % 2 === 1){
         const middleIdx = (len -1)/2;
-        return arr[middleIdx];
+        return arr[middleIdx]; //奇数の時は計算の必要がないのでidxで真ん中から取ってくるだけ。
     }else{
         const middle1 = arr[len / 2-1];
         const middle2 = arr[len / 2];
-        return (middle1 + middle2) / 2;
+        return (middle1 + middle2) / 2; //偶数の時は真ん中二つの数を足して２で割る必要がある。mid1,mid2をidxから指定した後、それを足して２で割ったものを中央値とする。
     }
 }
 
 console.log('The Median:',findMedian([1,2,3,4,5]));
 console.log('The Median:',findMedian([1,2,3,4,5,6]));
+
+const isPrime = (num) =>{
+    if(num <= 1) return false;
+    for(let i = 2; i < num; i++){
+        if(num % i === 0) return false
+    }
+    return true
+}
+
+const primeArr = (arr) =>{
+    const newArr = [];
+    for(let i = 0; i < arr.length; i++){
+        if(isPrime(arr[i])){
+            newArr.push(arr[i]);
+        }
+    }
+    return newArr;
+}
+
+console.log('Prime number:',primeArr([10,11,12,13,14,15,17]))
+
