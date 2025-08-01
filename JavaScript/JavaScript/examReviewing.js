@@ -59,13 +59,54 @@ const longestSubstrWithoutRepeatingChar = (string) =>{
 
         const currentLength = end - start + 1;
         if(currentLength > maxLength){
-            maxLength - currentLength;
-            longestSubstring = string.substring(start,end + 1);
+            maxLength = currentLength;
+            longestSubstring = string.substring(start,end + 1).length;
         }
     }
     return longestSubstring;
 }
 
 console.log('Longest Substring:',longestSubstrWithoutRepeatingChar('abcbfeghijka'));
+console.log('Longest Substring:',longestSubstrWithoutRepeatingChar('abcabcbb'));
 console.log('Longest Substring:',longestSubstrWithoutRepeatingChar('bbbbbbbb'));
 console.log('Longest Substring:',longestSubstrWithoutRepeatingChar('pwwkew'));
+
+const multiplyingNumsAltogether = (nums) =>{
+    let current = 1;
+    for(let num of nums){
+        current *= num;
+    }
+    return current
+}
+
+console.log("Product number:",multiplyingNumsAltogether([1,2,3,4]))
+
+const compareNums = (a,b) =>{
+    return a - b;
+}
+
+const sortByValue = (obj) =>{
+    let arr = [];
+    for(let key in obj){
+        arr.push(obj[key])
+    }
+    return arr.sort(compareNums)
+}
+
+console.log('Sorted values:',sortByValue({a:3,b:1,c:2}))
+
+const findMedian = (arr) =>{
+    arr.sort((a,b)=>{ return a-b;});
+    const len = arr.length;
+    if(len % 2 === 1){
+        const middleIdx = (len -1)/2;
+        return arr[middleIdx];
+    }else{
+        const middle1 = arr[len / 2-1];
+        const middle2 = arr[len / 2];
+        return (middle1 + middle2) / 2;
+    }
+}
+
+console.log('The Median:',findMedian([1,2,3,4,5]));
+console.log('The Median:',findMedian([1,2,3,4,5,6]));
