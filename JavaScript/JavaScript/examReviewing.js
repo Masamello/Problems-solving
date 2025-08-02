@@ -131,3 +131,56 @@ const primeArr = (arr) =>{
 
 console.log('Prime number:',primeArr([10,11,12,13,14,15,17]))
 
+const rotateArray = (arr,n) =>{
+    n %= arr.length; //例えばarrが[1,2,3],n=5とすると実質回してる回数は２回分だけなので割って余った回数分だけをnに割り当てる
+    if(n === 0) return arr;
+    let slicedArr = arr.slice(-n);
+    let anotherSlicedArr = arr.slice(0, arr.length - n);
+    let concatArr = slicedArr.concat(anotherSlicedArr)
+    return concatArr;
+}
+
+const anotherRotateArray = (nums,k) =>{
+    while (k>=nums.length) {
+       k = k-nums.length; 
+    }
+    const result = [];
+    let i = nums.length - k;
+    let j = 0;
+    while (i<nums.length && j<k) {
+        result[j] = nums[i];
+        j++;
+        i++;
+    }
+    let l = 0;
+    while (l<nums.length-k) {
+        result[j] = nums[l];
+        l++;
+        j++;
+    }
+    for (let m = 0; m<nums.length; m++) {
+        nums[m] = result[m];
+    }
+    return result
+}
+console.log('Roatate Array(Another way):',anotherRotateArray([1,2,3,4],3))
+console.log("Rotate Array:",rotateArray([1,2,3,4],3));
+
+const isPalindrome = (string) =>{
+    let firstIdx = 0;
+    let lastIdx = string.length - 1;
+    while(firstIdx < lastIdx){
+        if(string[firstIdx] !== string[lastIdx]){
+            return false;
+        }
+        firstIdx++;
+        lastIdx--;
+    }
+    return true;
+}
+
+const longestPalindrome = (string) =>{
+    for(let i = 0; i < string.length; i++){
+
+    }
+}
