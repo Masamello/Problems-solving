@@ -166,21 +166,33 @@ const anotherRotateArray = (nums,k) =>{
 console.log('Roatate Array(Another way):',anotherRotateArray([1,2,3,4],3))
 console.log("Rotate Array:",rotateArray([1,2,3,4],3));
 
-const isPalindrome = (string) =>{
-    let firstIdx = 0;
-    let lastIdx = string.length - 1;
-    while(firstIdx < lastIdx){
-        if(string[firstIdx] !== string[lastIdx]){
-            return false;
-        }
-        firstIdx++;
-        lastIdx--;
-    }
-    return true;
-}
-
 const longestPalindrome = (string) =>{
-    for(let i = 0; i < string.length; i++){
+    if(string.length <= 1) return string;
+    
+    let start = 0;
+    let end = 0;
 
+    for(let i = 0; i < string.length; i++){
+        const len1 = expandFromCenter(string,i,i);
+        const len2 = expandFromCenter(string,i,i + 1);
+        const maxLen = Math.max(len1,len2);
+
+        if(maxLen > end - start){
+            start = i - Math.floor((maxLen - 1)/2);
+            end = i + Math.floor(maxLen/2);
+        }
     }
+    return string.slice(start,end + 1);
 }
+
+
+const expandFromCenter = (str, left, right) =>{
+    while(left >= 0 && right < str.length && str[left] === str[right]){
+        left--;
+        right++;
+    }
+    return right - left -1;
+}
+console.log('Longest Palindrome:',longestPalindrome('babad'));
+console.log('Longest Palindrome:',longestPalindrome('wbba'));
+console.log('Longest Palindrome:',longestPalindrome('a'));
