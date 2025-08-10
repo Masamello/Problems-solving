@@ -143,3 +143,44 @@ const isSymmetric = (arr) =>{
 console.log('isSymmetric:',isSymmetric([1,2,3,2,1]));
 console.log('isSymmetric:',isSymmetric(["a","b","c","b","a"]));
 console.log('isSymmetric:',isSymmetric([1,2,3,4,5]));
+
+// Write a function countClumps that takes array and returns how many clumps will be appeared
+const countClumps = (arr) =>{
+    let count = 0;
+    let i = 0;
+    while(i < arr.length){
+        if(arr[i] == arr[i+1]){
+            count++;
+            while(arr[i] == arr[i+1]){
+                i++;
+            }
+        }
+        i++;
+    }
+    return count;
+}
+
+console.log('Count Clumps:',countClumps([1,2,2,3,4,4]));
+console.log('Count Clumps:',countClumps([1,2,1,1,1]));
+console.log('Count Clumps:',countClumps([1,2,3,4,5,3]));
+
+// Write a function that takes arr and returns the element which appear only one time in the arr;
+const uniqueOnce = (arr) =>{
+    let result = [];
+    for(let i = 0; i < arr.length; i++){
+        let counter = 0;
+        for(let j = 0; j < arr.length; j++){
+            if(arr[i] == arr[j]){
+                counter++;
+            }
+        }
+        if(counter === 1){
+            result.push(arr[i]);
+        }
+    }
+    return result;
+}
+
+console.log('unique Once:',uniqueOnce([1,2,2,3,4,4,5]));
+console.log('unique Once:',uniqueOnce([7,8,8,9,10,7]));
+console.log('unique Once:',uniqueOnce([1,1,1]));
