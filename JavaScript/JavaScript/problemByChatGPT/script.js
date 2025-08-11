@@ -184,3 +184,27 @@ const uniqueOnce = (arr) =>{
 console.log('unique Once:',uniqueOnce([1,2,2,3,4,4,5]));
 console.log('unique Once:',uniqueOnce([7,8,8,9,10,7]));
 console.log('unique Once:',uniqueOnce([1,1,1]));
+
+// Write a function that takes an array fo strings and returns an array containing only the strings that have all unique characters
+const uniqueChar = (arr) =>{
+    let result = [];
+    for(let word of arr){
+        word = word.toLowerCase();
+        const seenChars = new Set();
+        let isDuplicate = false;
+        for(let i = 0; i < word.length; i++){
+            let char = word[i];
+            if(seenChars.has(char)){
+                isDuplicate = true;
+                break;
+            }
+            seenChars.add(char);
+        }
+        if(!isDuplicate){
+            result.push(word);
+        }
+    }
+    return result;
+}
+
+console.log('Unique Character:',uniqueChar(["apple","banana","abc","police"]));
