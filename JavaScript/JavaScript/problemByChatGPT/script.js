@@ -208,3 +208,28 @@ const uniqueChar = (arr) =>{
 }
 
 console.log('Unique Character:',uniqueChar(["apple","banana","abc","police"]));
+
+// Write a finction that takes calculates the factorial of a number using a for...of loop and an array generated from 1 to n.
+const factorial = (n) =>{
+    let result = 1;
+    if(n == 0) return result;
+    for(let i = 1; i <= n; i++){
+        result *= i;
+    }
+    return result;
+}
+
+console.log('Factorial Iterative:',factorial(5));
+console.log('Factorial Iterative:',factorial(6));
+
+// Write a function that takes an object whose values are strings, and returns an array of keys sorted by the length of their string values in ascending order. Use a for...in loop.
+const objectKeyLengthSortedByValue = (obj) => {
+    let arr = [];
+    for (let key in obj) {
+        arr.push({ key: key, length: obj[key].length });
+    }
+    arr.sort((a, b) => a.length - b.length);
+    return arr.map(item => item.key);
+};
+
+console.log('Object Key Lenght Sorted By Value:',objectKeyLengthSortedByValue({a:"hi", b:"hello", c:"hey"}));
