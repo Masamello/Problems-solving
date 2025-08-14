@@ -233,3 +233,41 @@ const objectKeyLengthSortedByValue = (obj) => {
 };
 
 console.log('Object Key Lenght Sorted By Value:',objectKeyLengthSortedByValue({a:"hi", b:"hello", c:"hey"}));
+
+// Write a function that takes an array of numbers and returns the mode (the number that appears most frequently). If multiple numbers have the same frequency, return the smallest one.
+const findMode = (arr) =>{
+    let counts = {};
+    let maxCounts = 0;
+    let maxNum = 0;
+    for(let num of arr){
+        if(counts[num] !== undefined){
+            counts[num] += 1;
+        }else{
+            counts[num] = 1;
+        }
+        if(counts[num] > maxCounts){
+            maxCounts = counts[num];
+            maxNum = num;
+        }
+    }
+    return maxNum;
+}
+
+console.log('Find Monde:',findMode([1,2,2,3,3]));
+console.log('Find Monde:',findMode([1,2,3,3]));
+
+// Write a function that takes an array of integers and returns a new array containing only the numbers with an even number of digits.
+const evenDigitNums = (arr) =>{
+    let result = []
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] % 2 == 0){
+            if((String(arr[i]).length) % 2 == 0){
+                result.push(arr[i]);
+            }
+        }
+        
+    }
+    return result;
+}
+
+console.log("Even Digit Numbers:",evenDigitNums([12,345,2,6,7896]));
