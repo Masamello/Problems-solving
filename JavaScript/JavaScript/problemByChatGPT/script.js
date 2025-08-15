@@ -271,3 +271,68 @@ const evenDigitNums = (arr) =>{
 }
 
 console.log("Even Digit Numbers:",evenDigitNums([12,345,2,6,7896]));
+
+// Write a function that rotates an array to the left by given number n.
+const rotateNumToLeft = (arr,n) =>{
+    n = n % arr.length;
+    if(n === 0) return arr;
+    let left = arr.slice(0,n);
+    let right= arr.slice(n);
+    let result = right.concat(left);
+    return result;
+}
+
+console.log("Rotate Number to Left:",rotateNumToLeft([1,2,3,4,5],2));
+console.log("Rotate Number to Left:",rotateNumToLeft([1,2,3,4,5,6],1));
+
+// Write a function that finds the second largest numner in an array without sorting it
+const leastNum = (arr)=>{
+  let smallest = arr[0];
+  let smallestIdx = 0;
+  for(let i=1; i<arr.length;i++){
+    if (arr[i] < smallest) {
+      smallest = arr[i];
+      smallestIdx = i;
+    }
+  }
+  return smallestIdx
+}
+
+const sortArray = (arr)=>{
+    const newArr = [];
+    while(arr.length) {
+        let smallest = leastNum(arr);
+        newArr.push(...arr.splice(smallest,1));
+    }
+    return newArr;
+}
+
+const secondLargestNum = (arr) =>{
+    let sortedArr = sortArray(arr);
+    return sortedArr.splice(-2,1);
+}
+
+console.log("Second Largest Num:",secondLargestNum([10,20,4,2,99]));
+console.log("Second Largest Num:",secondLargestNum([10,20,4,45,99]));
+
+const secondLargestNumAnotherWay = (arr) =>{
+    let largest = -Infinity; // to ensure that any number in the array will be larger thhan current.
+    let secondLargest = -Infinity;
+
+    for(let num of arr){
+        if(num > largest){
+            secondLargest = largest;
+            largest = num;
+        }else if(num > secondLargest && num < largest){
+            secondLargest = num;
+        }
+    }
+    return secondLargest;
+}
+
+console.log('Second Largest Num:',secondLargestNumAnotherWay([10, 20, 4, 2, 99]));
+
+// Write a function that takes an array that may contain subarrays and returns a new flattened array
+const FlattenNestedArr = (arr) =>{
+
+}
