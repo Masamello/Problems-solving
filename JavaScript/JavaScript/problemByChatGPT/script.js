@@ -366,3 +366,19 @@ const findMissingNum = (arr) =>{
 
 console.log('Find Missing Num:',findMissingNum([1,3,4,5]));
 console.log('Find Missing Num:',findMissingNum([1,2,3,5]));
+
+// Write a function that takes an array of intergers and returns the element that appears more than n/2 times
+const majorityElement = (arr) => {
+  const cnt = {};
+  let best = 0
+  let bestNum = null;
+  for (const x of arr) {
+    cnt[x] = (cnt[x] || 0) + 1;
+    if (cnt[x] > best) { best = cnt[x]; bestNum = x; }
+  }
+  return best > Math.floor(arr.length / 2) ? bestNum : null;
+};
+
+console.log('Majority Element:',majorityElement([2,2,1,2,3,2,2]));
+console.log('Majority Element:',majorityElement([3,3,1,2,3,2,3]));
+console.log('Majority Element:',majorityElement([3,3,1,2,3,2,2]));
