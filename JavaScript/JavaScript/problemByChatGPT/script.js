@@ -333,6 +333,36 @@ const secondLargestNumAnotherWay = (arr) =>{
 console.log('Second Largest Num:',secondLargestNumAnotherWay([10, 20, 4, 2, 99]));
 
 // Write a function that takes an array that may contain subarrays and returns a new flattened array
-const FlattenNestedArr = (arr) =>{
-
+const flattenNestedArr = (arr) =>{
+    let flattenedArr = [];
+    const checkIfNestedArr = (subArr) =>{
+        for(let i = 0; i < subArr.length; i++){
+            if(Array.isArray(subArr[i])) { //今見てる要素がArrayだったらcheckIfNestedArrを呼び出して深い階層の処理をさせる
+                checkIfNestedArr(subArr[i]);
+            } else {
+                flattenedArr.push(subArr[i]); //今見てる要素がアレイじゃなかったらプッシュして次
+            }
+        }
+    }
+    checkIfNestedArr(arr); //最初に渡したarrを再帰関数に渡して実行
+    return flattenedArr;
 }
+
+console.log('Flattened Array:',flattenNestedArr([1, [2, [3, 4], 5], 6]));
+console.log('Flattened Array:',flattenNestedArr([[1, 2], [3, 4], 5]));
+console.log('Flattened Array:',flattenNestedArr([1, null, [2]]));
+
+// Write a function that finds the missing number
+const findMissingNum = (arr) =>{
+    let missing = 0;
+    for(let i = 0; i < arr.length - 1; i++){
+        if(arr[i + 1] !== arr[i] + 1){
+            missing = arr[i] + 1;
+            break;
+        }
+    }
+    return missing;
+}
+
+console.log('Find Missing Num:',findMissingNum([1,3,4,5]));
+console.log('Find Missing Num:',findMissingNum([1,2,3,5]));
