@@ -382,3 +382,36 @@ const majorityElement = (arr) => {
 console.log('Majority Element:',majorityElement([2,2,1,2,3,2,2]));
 console.log('Majority Element:',majorityElement([3,3,1,2,3,2,3]));
 console.log('Majority Element:',majorityElement([3,3,1,2,3,2,2]));
+
+// Write a function that checks if a given number is a palindrome
+const isPalindromeNum = (n) =>{
+    n = String(n).split("");
+    let firstIdx = 0;
+    let lastIdx = n.length - 1;
+    while(firstIdx < lastIdx){
+        if(n[firstIdx] !== n[lastIdx]){
+            return false;
+        }
+        firstIdx++;
+        lastIdx--;
+    }
+    return true;
+}
+
+console.log('Palindrome Number:',isPalindromeNum(1221));
+console.log('Palindrome Number:',isPalindromeNum(121));
+console.log('Palindrome Number:',isPalindromeNum(123));
+
+// Write a function that takes an array and returns rotate array to the right by k(given number) steps
+const rotateArray = (arr,k) =>{
+    let newArr = new Array(n);
+    for(let i = 0; i < arr.length; i++){
+        let newIdx = (i + k) % arr.length; //(i+k)で要素をk個分動かしたときの位置を表すが、配列の長さを超えるインデックスは存在しないためアレイの長さで割ったあまりをnewIdxとしてはみ出た分を先頭に戻している
+        newArr[newIdx] = arr[i];
+    }
+
+    return newArr;
+}
+
+console.log('Rotate Array:',rotateArray([1,2,3,4,5],2));
+console.log('Rotate Array:',rotateArray([1,2,3,4,5],3));
