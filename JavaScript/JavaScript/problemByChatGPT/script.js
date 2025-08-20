@@ -250,6 +250,7 @@ const findMode = (arr) =>{
             maxNum = num;
         }
     }
+    console.log(counts);
     return maxNum;
 }
 
@@ -404,7 +405,7 @@ console.log('Palindrome Number:',isPalindromeNum(123));
 
 // Write a function that takes an array and returns rotate array to the right by k(given number) steps
 const rotateArray = (arr,k) =>{
-    let newArr = new Array(n);
+    let newArr = new Array(arr.length);
     for(let i = 0; i < arr.length; i++){
         let newIdx = (i + k) % arr.length; //(i+k)で要素をk個分動かしたときの位置を表すが、配列の長さを超えるインデックスは存在しないためアレイの長さで割ったあまりをnewIdxとしてはみ出た分を先頭に戻している
         newArr[newIdx] = arr[i];
@@ -415,3 +416,17 @@ const rotateArray = (arr,k) =>{
 
 console.log('Rotate Array:',rotateArray([1,2,3,4,5],2));
 console.log('Rotate Array:',rotateArray([1,2,3,4,5],3));
+
+// Write a function that takes an array of intergers in sequences and returns how many unique elemnts exist in an array
+const countUniquElmnt = (arr) =>{
+    let obj = {};
+    for(let num of arr){
+        if(obj[num] == undefined){
+            obj[num] = 1;
+        }
+    }
+    let key = Object.keys(obj);
+    return key.length;
+}
+
+console.log('Count Unique Distinct Element:',countUniquElmnt([1,2,2,3,4,4,5]));
