@@ -501,3 +501,15 @@ const pascalsTriangle = (n) => {
 };
 
 console.log("Pascal's Triangle:",pascalsTriangle(5));
+
+// Write a function that reverses a stirng without using built-in reverse methods
+const reverseStr = (str) =>{
+    let newStr = '';
+    str = str.split('');
+    for(let i = str.length - 1; i >= 0; i--){
+        newStr += str[i];
+    }
+    return newStr;
+}
+
+console.log('Reverse Strings:',reverseStr('Hello, I am Masa.'));
