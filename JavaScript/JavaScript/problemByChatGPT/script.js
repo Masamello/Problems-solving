@@ -268,7 +268,6 @@ const findMode = (arr) => {
             maxNum = num;
         }
     }
-    console.log(counts);
     return maxNum;
 };
 
@@ -513,3 +512,26 @@ const reverseStr = (str) =>{
 }
 
 console.log('Reverse Strings:',reverseStr('Hello, I am Masa.'));
+
+// Write a function that takes array of integers and a target, and retruns the indices of the two numbers that add up to the target
+const twoSum = (arr,target) =>{
+    for(let i = 0; i < arr.length; i++){
+        for(let j = i + 1; j < arr.length; j++){
+            if(arr[i] + arr[j] === target) return [i,j];
+        }
+    }
+}
+
+console.log("Two Sum:",twoSum([2,7,11,15],9));
+console.log("Two Sum:",twoSum([2,7,11,15],26));
+
+// Write a function that checks if two strings are anagrams
+const anagramChecker = (str1,str2) =>{
+    let obj1 = {};
+    let obj2 = {};
+    for(let chars of str1){
+        console.log(obj1[chars]);
+    }
+} 
+
+anagramChecker('listen','silnet');
