@@ -527,11 +527,28 @@ console.log("Two Sum:",twoSum([2,7,11,15],26));
 
 // Write a function that checks if two strings are anagrams
 const anagramChecker = (str1,str2) =>{
+    if(str1.length !== str2.length) return false;
     let obj1 = {};
     let obj2 = {};
     for(let chars of str1){
-        console.log(obj1[chars]);
+        obj1[chars] = (obj1[chars] || 0) + 1;
     }
+    console.log(obj1)
+    for(let char of str2){
+        obj2[char] = (obj2[char] || 0) + 1;
+    }
+
+    for(let key in obj1){
+        if(obj1[key] !== obj2[key]) return false
+    }
+    return true;
 } 
 
-anagramChecker('listen','silnet');
+console.log('isAnagram:',anagramChecker('listen','silent'));
+
+// Write a function that print numbers from 1 to n
+const fizzBuzz = (n) =>{
+    
+}
+
+console.log('Fizz Buzz:',fizzBuzz(15));
