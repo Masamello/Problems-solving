@@ -548,7 +548,33 @@ console.log('isAnagram:',anagramChecker('listen','silent'));
 
 // Write a function that print numbers from 1 to n
 const fizzBuzz = (n) =>{
-    
+    let newArr = [];
+    for (let i = 1; i <= n; i++) {
+        let output = '';
+        if (i % 3 === 0) output += 'Fizz';
+        if (i % 5 === 0) output += 'Buzz';
+        newArr.push(output || i);
+    }
+    return newArr;
 }
 
 console.log('Fizz Buzz:',fizzBuzz(15));
+
+// Write a function that takes string and returns the fisrt character that does not repeat.
+const firstNonRepeatChar = (str) => {
+    let result = '';
+    let o = {};
+    if(str == '') return false;
+    for(let char of str){
+        o[char] = (o[char] || 0) + 1;
+    }
+    for(let chars of Object.keys(o)){
+        if(o[chars] === 1){
+            result = chars;
+            break;
+        }
+    }
+    return result;
+}
+
+console.log('First Non-Repeating Character:',firstNonRepeatChar('swiss'));
