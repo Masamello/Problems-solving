@@ -578,3 +578,42 @@ const firstNonRepeatChar = (str) => {
 }
 
 console.log('First Non-Repeating Character:',firstNonRepeatChar('swiss'));
+
+// Write a function that caluculates the fqactorial of a number
+const factorialCalculator = (n) =>{
+    let result = 1;
+    if(n === 0) return false;
+    for(let i = 1; i <= n; i++){
+        result *= i;
+    }
+    return result;
+}
+
+console.log('Factorial Calculator:',factorialCalculator(5));
+
+// Write a function that takes nested array and returns single array which is flattened
+const flattenNestArr = (arr) => {
+    let newArr = [];
+
+    const diveDeeper = (subArr) => {
+        for (let i = 0; i < subArr.length; i++) {
+            if (Object.prototype.toString.call(subArr[i]) === '[object Array]') {
+                diveDeeper(subArr[i]); // Dive into nested array
+            } else {
+                newArr.push(subArr[i]); // Push primitive value
+            }
+        }
+    };
+
+    diveDeeper(arr);
+    return newArr;
+};
+
+// Another way to solve this, I can use reduce() property like this way:
+// const flattenNestArr = (arr) => {
+//   return arr.reduce((acc, val) => 
+//     Array.isArray(val) ? acc.concat(flattenNestArr(val)) : acc.concat(val), []
+//   );
+// };
+
+console.log('Flatten Nested Array:', flattenNestArr([1, [2, [3, 4]], 5]));
