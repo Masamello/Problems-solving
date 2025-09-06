@@ -617,3 +617,19 @@ const flattenNestArr = (arr) => {
 // };
 
 console.log('Flatten Nested Array:', flattenNestArr([1, [2, [3, 4]], 5]));
+
+// write a function that takes array of strings and returns group of array which are separated by anagrams
+const groupAnagram = (arr) =>{
+    const map = new Map();
+
+    for(let word of arr){
+        const key = word.split('').sort().join('');
+        if(!map.has(key)){ //Initialze group if key doesn't exist. Ensures that each unique anagram group has its own array in the Map.
+            map.set(key,[]);
+        }
+        map.get(key).push(word); //push word into its anagram group;
+    }
+    return Array.from(map.values());
+}
+
+console.log('Group Anagram',groupAnagram(["eat","tea","tan","ate","nat","bat"]))
