@@ -632,4 +632,84 @@ const groupAnagram = (arr) =>{
     return Array.from(map.values());
 }
 
-console.log('Group Anagram',groupAnagram(["eat","tea","tan","ate","nat","bat"]))
+console.log('Group Anagram',groupAnagram(["eat","tea","tan","ate","nat","bat"]));
+
+// Write a function that takes integers of array and returns all the elements in spiral order
+const spiralOrder = (matrix) => {
+    if (matrix.length === 0) return [];
+
+    let result = [];
+    let top = 0;
+    let bottom = matrix.length - 1;
+    let left = 0;
+    let right = matrix[0].length - 1;
+
+    while (top <= bottom && left <= right) {
+        // Traverse Left → Right (Top row)
+        for (let col = left; col <= right; col++) {
+            result.push(matrix[top][col]);
+        }
+        top++;
+
+        // Traverse Top → Bottom (Right column)
+        for (let row = top; row <= bottom; row++) {
+            result.push(matrix[row][right]);
+        }
+        right--;
+
+        // Traverse Right → Left (Bottom row) - only if rows remain
+        if (top <= bottom) {
+            for (let col = right; col >= left; col--) {
+                result.push(matrix[bottom][col]);
+            }
+            bottom--;
+        }
+
+        // Traverse Bottom → Top (Left column) - only if cols remain
+        if (left <= right) {
+            for (let row = bottom; row >= top; row--) {
+                result.push(matrix[row][left]);
+            }
+            left++;
+        }
+    }
+
+    return result;
+};
+
+// Example
+console.log('Spiral Matrix Traversal:', spiralOrder([
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]));
+
+
+// Write a function that takes strings and returns frequency counter which separated by word;
+const wordFrequencyCounter = (str) =>{
+    let counter = {};
+    str = str.toLowerCase().replace(/[^\w\s]/g, '').split(' ');
+    for(let char of str){
+        counter[char] = (counter[char] || 0) + 1; 
+    }
+    return counter;
+}
+
+console.log('Word Frequncy Counter:',wordFrequencyCounter('The cat and the hat.'));
+
+// Write a function that takes array of integers and intger k and returns subarray that sums equal k;
+const subarraySumEqualK = (nums, k) =>{
+    let count = 0;
+    for(let i = 0; i < nums.length; i++){ // Pick a starting index i
+        let sum = 0;
+        for(let j = i; j < nums.length; j++){ // Expand to the right(j), keeping a running sum
+            sum += nums[j];
+            if(sum === k){ // Each time sum == k, count it
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+console.log('Subarray Sum Equals k:',subarraySumEqualK([1,1,1],2));
