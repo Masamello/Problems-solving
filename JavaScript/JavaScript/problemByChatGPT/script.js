@@ -713,3 +713,29 @@ const subarraySumEqualK = (nums, k) =>{
 }
 
 console.log('Subarray Sum Equals k:',subarraySumEqualK([1,1,1],2));
+
+// Write a function that takes unsorted array of integers and returns the length of the longest consecutive elements sequence
+const longestConsecutiveSequence = (arr) =>{
+    if(arr.length === 0) return [];
+    arr = arr.sort((a,b) => a - b);
+    let maxStreak = [];
+    let currentSreak = [arr[0]];
+    
+    for(let i = 1; i < arr.length; i++){
+        if(arr[i] === arr[i - 1] + 1){
+            currentSreak.push(arr[i])
+        }else if(arr[i] !== arr[i - 1]){
+            if(currentSreak.length > maxStreak.length){
+                maxStreak = currentSreak;
+            }
+            currentSreak = [arr[i]]
+        }
+    }
+    if(currentSreak.length > maxStreak.length){
+        maxStreak = currentSreak;
+    }
+    return maxStreak;
+}
+
+console.log('Longest Consecutive Sequence:',longestConsecutiveSequence([100, 4, 200, 1, 3, 2]));
+console.log('Longest Consecutive Sequence:',longestConsecutiveSequence([7, 4, 6, 1, 3, 2, 7, 8, 9, 10]));
