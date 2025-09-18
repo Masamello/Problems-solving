@@ -739,3 +739,29 @@ const longestConsecutiveSequence = (arr) =>{
 
 console.log('Longest Consecutive Sequence:',longestConsecutiveSequence([100, 4, 200, 1, 3, 2]));
 console.log('Longest Consecutive Sequence:',longestConsecutiveSequence([7, 4, 6, 1, 3, 2, 7, 8, 9, 10]));
+
+// Write a function that takes array of integers and returns length of the longest contiguous strictly increasing subarrays
+const longestIncreasingSubarray = (arr) =>{
+    if(arr.length === 0) return false;
+
+    let max = [];
+    let current = [];
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] === arr[i - 1] + 1){
+            current.push(arr[i]);
+        }else{
+            if(current.length > max.length){
+                max = [...current];
+            }
+            current = [arr[i]];
+        }
+    }
+    if(current.length > max.length){
+        max = [...current];
+    }
+    console.log(max);
+    return max.length;
+}
+
+console.log('Longest Increasing Subarray:',longestIncreasingSubarray([1, 2, 2, 3, 4, 5]));
+console.log('Longest Increasing Subarray:',longestIncreasingSubarray([4,5,3,5,6,8,8,9,10]));
