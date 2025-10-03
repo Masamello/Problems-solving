@@ -83,9 +83,23 @@ def word_frequency_counter(sentence):
     return frequency
 print(word_frequency_counter('I love Python and I love coding'))
 
-def timeCounter():
-    for i in range(15):
-        print(time.asctime())
-        time.sleep(1)
+# p7. Write a funtion that takes a list and returns a new list with only the unique elements
+def unique_elmnt(li):
+    new_list = []
+    for i in range(len(li)):
+        if i not in new_list:
+            new_list.append(i)
 
-timeCounter()
+    return new_list
+
+print(unique_elmnt([1,2,3,4,5,5,6,7,7,8]))
+# alternative way to solve this:
+# def unique_elmnt(li):
+#   return list(set(li))
+
+def time_counter(start_value):
+    print('Count down from 15s')
+    for i in range(start_value,-1,-1):
+        print(f'{i}',"/",time.asctime())
+        time.sleep(1)
+time_counter(15)
