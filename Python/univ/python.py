@@ -102,4 +102,54 @@ def time_counter(start_value):
     for i in range(start_value,-1,-1):
         print(f'{i}',"/",time.asctime())
         time.sleep(1)
-time_counter(15)
+# time_counter(15)
+
+# p8. Write a funtion that takes a list of numbers and returns the maximum number without using max()
+def find_maximum_num(num):
+    max_value = num[0]
+    for i in num:
+      if i > max_value:
+          max_value = i
+    return max_value
+print('max_num:',find_maximum_num([1,2,4,6,3,4]))
+print('max_num:',find_maximum_num([-3, -5, -2]))
+
+# p9. Write a function that checks if string is a palindrome
+def is_palindrome(str):
+    left = 0
+    right = len(str) - 1
+    while left < right:
+        if(str[left] != str[right]):
+            return False
+        left += 1
+        right -= 1
+    return True
+print('isPalindrome:',is_palindrome('python'))
+print('isPalindrome:',is_palindrome('racecar'))
+
+# p.10 Write a recursive function that caluculates the factorial of number n
+def recursive_factorial(n):
+    result = 1
+    if n == 0 or n == 1:
+        return result
+    else:
+        return n * recursive_factorial(n - 1)
+print('Factorial number:',recursive_factorial(5))
+
+# p11. Write a program that:
+# Creates a text file called data.txt.
+# Writes a few lines of text (your choice).
+# Reads the file content back and prints it line by line.
+def file_handling():
+    # Step 1: Write to the file
+    with open('data.txt', 'w') as f:
+        f.write("Hello, Python!\n")
+        f.write("This is line 2.\n")
+        f.write("And line 3!\n")
+
+    # Step 2: Read from the file
+    with open('data.txt', 'r') as f:
+        for line in f:
+            print(line.strip())  # strip() removes extra newline characters
+
+file_handling()

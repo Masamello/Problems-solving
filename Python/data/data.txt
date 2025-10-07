@@ -1,0 +1,5 @@
+data = [
+    ('Hi, I am here! sry, can you open this file? idk how to open it')
+    ('unfortunately, he said do it yourself. but I don't even know how!')
+    ('oh okay, thank you. it was already opend. fuck me.')
+]
