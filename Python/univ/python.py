@@ -153,3 +153,41 @@ def file_handling():
             print(line.strip())  # strip() removes extra newline characters
 
 file_handling()
+
+# p12.Write a function that takes a list of numbers and returns a new list with each number squared
+def square_every_number(listNum):
+    new_list = []
+    for x in listNum:
+        new_list.append(x*x)
+    return new_list
+print(square_every_number([1,2,3,4]))
+
+# p13.Write a one-kiner that uses filter() and a lambda function to extract only even numbers from a list
+def filter_even_nums(listNum):
+    x = lambda a : a % 2 == 0
+    return list(filter(x,listNum))
+        
+print(filter_even_nums([1,2,3,4,5,6]))
+
+# p14.Write a function that takes given list of words and returns a dictionary where each word is a key and its length is the value
+def word_length_dictionary(myList):
+    myDict = {}
+    for word in myList:
+        myDict[word] = len(word)
+    return myDict
+print(word_length_dictionary(["apple", "banana", "cherry"]))
+
+# p15. Write a function that reads a text file and counts how many line contain a specific word(like "python")
+def count_lines_containing_a_word():
+    with open('Data.txt',"w") as file:
+        file.write("Hi, I'm using Python\n")
+        file.write("Hi, I'm using javascript\n")
+        file.write("Hi, I'm using Python\n")
+
+    count = 0
+    with open('Data.txt',"r") as read:
+        for line in read:
+            if 'python' in line.lower():
+                count += 1
+    return count
+print(count_lines_containing_a_word())
