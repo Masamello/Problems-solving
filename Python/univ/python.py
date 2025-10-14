@@ -191,3 +191,22 @@ def count_lines_containing_a_word():
                 count += 1
     return count
 print(count_lines_containing_a_word())
+
+# p16. Write a function that takes a string and returns how many vowels it contains
+def count_vowels(txt):
+    vowels = ["a","u","o","i","e"]
+    counter = 0
+    txt = txt.lower()
+    chars = list(txt)
+    for char in chars:
+        if char in vowels:
+            counter += 1
+    return counter
+print("Count Vowels: ",count_vowels('hello world'))
+
+# p17. Write a function that returns the second largest number in a list(no sort() allowed)
+def find_second_largest(listNum):
+    second_largest = 0
+    max = 0
+    current = 0
+    
