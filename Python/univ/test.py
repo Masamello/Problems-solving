@@ -144,17 +144,20 @@ def data_handling():
 
 # 三角形の面積
 def calc_area_triangle(length_a,length_b,length_c):
-    if length_a <= 0 or length_b <= 0 or length_c <= 0:
-        raise ValueError("All sides must be positive numbers.")
-    if length_a + length_b <= length_c:
-        raise ValueError(f"最長辺の長さ{length_c} >= 他の2辺の和{length_a+length_b}")
-    if length_b + length_c <= length_a:
-        raise ValueError(f"最長辺の長さ{length_a} >= 他の2辺の和{length_b+length_c}")
-    if length_c + length_a <= length_b:
-        raise ValueError(f"最長辺の長さ{length_b} >= 他の2辺の和{length_a+length_c}")
-    s = (length_a + length_b + length_c) / 2
-    S = math.sqrt(s*(s - length_a)*(s - length_b)*(s - length_c))
-    return S
+    try:
+        if length_a <= 0 or length_b <= 0 or length_c <= 0:
+            raise ValueError("All sides must be positive numbers.")
+        if length_a + length_b <= length_c:
+            raise ValueError(f"最長辺の長さ{length_c} >= 他の2辺の和{length_a+length_b}")
+        if length_b + length_c <= length_a:
+            raise ValueError(f"最長辺の長さ{length_a} >= 他の2辺の和{length_b+length_c}")
+        if length_c + length_a <= length_b:
+            raise ValueError(f"最長辺の長さ{length_b} >= 他の2辺の和{length_a+length_c}")
+        s = (length_a + length_b + length_c) / 2
+        S = math.sqrt(s*(s - length_a)*(s - length_b)*(s - length_c))
+        return S
+    except ValueError as e:
+        return e
 
 def calc_area_iterable():
     while True:
@@ -166,13 +169,11 @@ def calc_area_iterable():
             print("You can only put numbers")
             continue
         
-        try:
-            area = calc_area_triangle(len_a,len_b,len_c)
-            print(f"Area : {area:.5f}")
-        except UnboundLocalError or ValueError as e:
-            print(f'Provided length is not acceptable : {e}')
+        area = calc_area_triangle(len_a,len_b,len_c)
+        if type(area) == ValueError:
+            print(f'error occured : {area}')
             continue
-
+        print(f"Area : {area:.4f}")
         if area == 0:
             print("お疲れさまでした")
             return True
