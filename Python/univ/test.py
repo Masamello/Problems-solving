@@ -139,6 +139,35 @@ def data_handling():
     # data = file_handling()
     # for i in data:
         
+from sample_data import sample_data as data
+
+def classify_data(data):
+    """データを10刻みの範囲に分類して個数を集計"""
+    bins = [0] * 26  # 0–255 を 10刻みで分ける → 26個
+    for value in data:
+        index = value // 10
+        bins[index] += 1
+    return bins
+
+def print_histogram(bins):
+    """分類結果を表示"""
+    total = sum(bins)
+    print(f"データ数={total}")
+    for i, count in enumerate(bins):
+        print(f"{i} {i*10}–{i*10+9} {count}")
+
+def main():
+    bins = classify_data(data)
+    print_histogram(bins)
+
+main()
+# class Data:
+#     def __init__(self,bin):
+#         self.bin = bin
+    
+#     def data_classify(self):
+#         for i in range(0,255,10):
+
 
 # data_handling()
 
@@ -146,7 +175,8 @@ def data_handling():
 def calc_area_triangle(length_a,length_b,length_c):
     try:
         if length_a <= 0 or length_b <= 0 or length_c <= 0:
-            raise ValueError("All sides must be positive numbers.")
+            print("All sides must be positive numbers.")
+            return False
         if length_a + length_b <= length_c:
             raise ValueError(f"最長辺の長さ{length_c} >= 他の2辺の和{length_a+length_b}")
         if length_b + length_c <= length_a:
@@ -177,4 +207,115 @@ def calc_area_iterable():
         if area == 0:
             print("お疲れさまでした")
             return True
-calc_area_iterable()
+#calc_area_iterable()
+
+"""
+モンテカルロ法による円周率の推定
+"""
+import random
+
+print("前半まとめ課題7-3")
+print("モンテカルロ法による円周率の推定")
+
+import random
+
+def montecarlo_pi(n):
+    """
+    モンテカルロ法により円周率を得る関数
+    引数:n=試行回数
+    戻り値:推定された円周率
+    """
+    count = 0
+    for i in range(n):
+        show_progress(i, n)
+        x = random.uniform(0, 1)
+        y = random.uniform(0, 1)
+        if x**2 + y**2 <= 1:
+            count += 1
+    estimation = 4 * (count / n)
+    return estimation
+
+def show_progress(value, full, size=10):
+    """
+    処理進捗の表示（簡易版）
+    引数:value=進捗値、full=完了値,size=表示桁数（省略可）
+    """
+    if value % (full // size) == 0:
+        print(">", end='')
+
+# メイン処理
+trials = 1000000
+repeats = 10
+total = 0
+
+# print("円周率の推定を開始します。")
+# for i in range(repeats):
+#     print(f"\n{i+1}回目の試行:")
+#     pi = montecarlo_pi(trials)
+#     print(f"\n推定値: {pi}")
+#     total += pi
+
+# average = total / repeats
+# print(f"\n円周率の平均推定値: {average}")
+
+# arm_length = (3.0,4.0,5.0)
+# def calc_position(degree_a,degree_b,degree_c):
+    
+
+# print(calc_position(30,45,60))
+# print(calc_position(-150,150,45))
+# print(calc_position(0,0,90))
+
+# import random
+
+# def estimate_pi_monte_carlo(num_points):
+#     """
+#     Estimates the value of Pi using the Monte Carlo method.
+
+#     Args:
+#         num_points (int): The total number of random points to generate.
+
+#     Returns:
+#         float: An approximation of Pi.
+#     """
+#     points_in_circle = 0
+#     for _ in range(num_points):
+#         # Generate random x and y coordinates between 0 and 1
+#         x = random.uniform(0, 1)
+#         y = random.uniform(0, 1)
+
+#         # Check if the point falls within the unit circle (radius 1)
+#         # The equation of a circle centered at (0,0) is x^2 + y^2 = r^2
+#         if x**2 + y**2 <= 1:
+#             points_in_circle += 1
+
+#     # The ratio of points in the circle to total points approximates
+#     # the ratio of the area of the circle to the area of the square (pi/4)
+#     pi_estimate = 4 * (points_in_circle / num_points)
+#     return pi_estimate
+
+# # Example usage:
+# num_simulations = 1000000
+# pi_approx = estimate_pi_monte_carlo(num_simulations)
+# print(f"Approximation of Pi with {num_simulations} points: {pi_approx}")
+
+import math
+
+ARM_LENGTHS = (3.0, 4.0, 5.0)
+
+def calc_position(degreeA, degreeB, degreeC):
+    
+    radA = math.radians(degreeA)
+    radB = math.radians(degreeA + degreeB)
+    radC = math.radians(degreeA + degreeB + degreeC)
+    
+    L1, L2, L3 = ARM_LENGTHS
+
+    x = L1 * math.cos(radA) + L2 * math.cos(radB) + L3 * math.cos(radC)
+    y = L1 * math.sin(radA) + L2 * math.sin(radB) + L3 * math.sin(radC)
+
+    return (round(x, 3), round(y, 3))
+
+print('calc_position(30,45,60)=',calc_position(60,45,30)) 
+print('calc_position(-150,150,45)=',calc_position(45,150,-150)) #Somehow, if I put opposite degrees this does work
+print('calc_position(0,0,90)=',calc_position(90,0,0))

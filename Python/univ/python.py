@@ -81,7 +81,7 @@ def word_frequency_counter(sentence):
         else:
             frequency[word] = 1 
     return frequency
-print(word_frequency_counter('I love Python and I love coding'))
+print('frequency counter: ',word_frequency_counter('I love Python and I love coding'))
 
 # p7. Write a funtion that takes a list and returns a new list with only the unique elements
 def unique_elmnt(li):
