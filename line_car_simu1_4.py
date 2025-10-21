@@ -4,7 +4,7 @@ from time import sleep
 robot_x = 80
 robot_y = 75
 robot_size = 20
-
+save_data = [0,0,0]
 theta = 90
 # ロボットにセンサを埋め込む
 sensor_x = int(robot_x + (robot_size/2)*(math.cos(math.radians(theta))))
@@ -55,6 +55,13 @@ while True:
     t += sampling
     # sleep(0.1)
 
+print('Simulation data:')
+save_data = save_data[1::,:]
+
+save_data_name = 'ON_OFF_data(threshold =' + str(threshold) + \
+    '_sampling=' + str(sampling) + 'speed=' + str(speed) + ').csv'
+
+np.savetxt(save_data_name, save_data, delimiter=',')
     
 
 
