@@ -209,4 +209,17 @@ def find_second_largest(listNum):
     second_largest = 0
     max = 0
     current = 0
+
+# p18. Write a function that takes strings and returns reverse the order of words in a string(not the letters)
+def reverse_words(strings):
+    words = strings.split()
+    result = ''
+    i = len(words) - 1
+    while i >= 0:
+        result += words[i] + ' '
+        i -= 1
+    return result.strip()
+    
+print('Reverse String :',reverse_words('I love Python'))
+
     

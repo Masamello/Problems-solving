@@ -230,6 +230,7 @@ const factorial = (n) => {
     if (n == 0) return result;
     for (let i = 1; i <= n; i++) {
         result *= i;
+        console.log(result);
     }
     return result;
 };
@@ -765,3 +766,18 @@ const longestIncreasingSubarray = (arr) =>{
 
 console.log('Longest Increasing Subarray:',longestIncreasingSubarray([1, 2, 2, 3, 4, 5]));
 console.log('Longest Increasing Subarray:',longestIncreasingSubarray([4,5,3,5,6,8,8,9,10]));
+
+//Write a function that takes array of unique integers and a range [lower, upper], returns the list of missing ranges
+let nums = [0,1,3,50,75];
+let lower = 0;
+let upper = 99;
+
+const findMissingRanges = (nums, lower, upper)=>{
+    let output = [];
+    
+}
+
+function greetings() {
+    console.log("Hello, Claude")
+}
+ greetings()
