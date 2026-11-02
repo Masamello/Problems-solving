@@ -44,6 +44,8 @@ const countAlternatingBits = (str) => {
 
 console.log("Count Alternating Bits:", countAlternatingBits("101010"));
 console.log("Count Alternating Bits:", countAlternatingBits("11110000"));
+console.log("Count Alternating Bits:", countAlternatingBits("1010000111"));
+
 
 // Write a function countIslandOnes that counts the number of "groups in which 1 appears in succession.
 const countIslandOnes = (str) => {
@@ -449,7 +451,9 @@ const countUniquElmnt = (arr) => {
             obj[num] = 1;
         }
     }
+    console.log('obj:',obj);
     let key = Object.keys(obj);
+    console.log(key);
     return key.length;
 };
 
@@ -767,17 +771,164 @@ const longestIncreasingSubarray = (arr) =>{
 console.log('Longest Increasing Subarray:',longestIncreasingSubarray([1, 2, 2, 3, 4, 5]));
 console.log('Longest Increasing Subarray:',longestIncreasingSubarray([4,5,3,5,6,8,8,9,10]));
 
-//Write a function that takes array of unique integers and a range [lower, upper], returns the list of missing ranges
-let nums = [0,1,3,50,75];
-let lower = 0;
-let upper = 99;
+// 文字列を受け取り、隣り合う文字が異なる箇所の数を返す関数 countChanges(str) を作成してください。
+// 大文字と小文字は区別します。空文字列と1文字の文字列では 0 を返してください。
 
-const findMissingRanges = (nums, lower, upper)=>{
-    let output = [];
+const countChanges = (str) =>{
+    if(str.length <= 1) return 0
+
+    let counter = 0
+
+    for(let i = 0; i < str.length - 1; i++){
+        if(str[i] != str[i + 1]){
+            counter++
+        }
+    }
+    return counter
+}
+
+console.log('count Changes:',countChanges('aaabbcaa'))
+console.log('count Changes:',countChanges('10101'))
+console.log('count Changes:',countChanges('aaa'))
+console.log('count Changes:',countChanges(''))
+
+// 整数の配列を受け取り、偶数が入っているインデックスを配列で返す関数 findEvenIndices(arr) を作成してください。
+// インデックスは 0 から始まります。0 と負の偶数も対象です。
+
+const findEvenIndices = (arr) =>{
+    let newArr = []
+
+    for(let i = 0; i < arr.length; i++){
+        
+        if(arr[i] % 2 == 0 ){
+            newArr.push(i)
+        }
+    }
+
+    return newArr
+}
+
+console.log('Find even indices:',findEvenIndices([3, 8, 5, 0, -2]))
+console.log('Find even indices:',findEvenIndices([2, 4, 6]))
+console.log('Find even indices:',findEvenIndices([1, 3, 5]))
+console.log('Find even indices:',findEvenIndices([0]))
+
+// 文字列を受け取り、同じ文字が連続している部分を1文字にまとめる関数 collapseRepeats(str) を作成してください。
+// 離れた場所にある同じ文字は、そのまま残してください。
+
+const collapseRepeats = (str) =>{
+    let countedStr = []
     
+    for(let i = 0; i < str.length; i++){
+        
+        if(str[i] != str[i - 1]){
+            countedStr.push(str[i])
+        }
+    }
+    return countedStr.join("")
 }
 
-function greetings() {
-    console.log("Hello, Claude")
+console.log('Collapse repeats:',collapseRepeats("aaabbcaaabbb"))
+console.log('Collapse repeats:',collapseRepeats("bookkeeper"))
+console.log('Collapse repeats:',collapseRepeats("abc"))
+console.log('Collapse repeats:',collapseRepeats(""))
+
+// 数値の配列を受け取り、それぞれの位置までの合計を新しい配列で返す関数 runningTotals(arr) を作成してください。
+
+const runningTotals = (arr) =>{
+    let newArr = []
+    let total = 0
+
+    for(let i = 0; i < arr.length; i++){
+        total = arr[i] + total
+        newArr.push(total)
+    }
+
+    return newArr
 }
- greetings()
+
+console.log('Running totals:',runningTotals([2,4,1,3]))
+console.log('Running totals:',runningTotals([5,-2,0,4]))
+console.log('Running totals:',runningTotals([7]))
+console.log('Running totals:',runningTotals([]))
+
+// 英単語の配列を受け取り、最も長い単語を返す関数 findLongestWord(words) を作成してください。
+// 長さが同じ場合は、先に登場した単語を返します。空配列では null を返してください。sort() は使用しないでください。
+
+const findLongestWord = (arr) => {
+    if (arr.length === 0) return null;
+
+    let longestWord = arr[0];
+
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i].length > longestWord.length) {
+            longestWord = arr[i];
+        }
+    }
+
+    return longestWord;
+};
+
+
+console.log('Find longest word:',findLongestWord(["cat", "elephant", "dog"]))
+console.log('Find longest word:',findLongestWord(["apple", "grape", "kiwi"]))
+console.log('Find longest word:',findLongestWord(["hi"]))
+console.log('Find longest word:',findLongestWord([]))
+
+// 数値の配列を受け取り、正の数が連続している区間の最大の長さを返す関数 longestPositiveStreak(arr) を作成してください。
+// 正の数とは 0 より大きい数です。0 または負の数が登場すると連続が途切れます。
+
+const longestPositiveStreak = (arr) =>{
+    if(arr.length == 0) return 0;
+
+    let max = [];
+    let current = [];
+
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] > 0){
+            current.push(arr[i])
+        }else{
+            if(current.length > max.length){
+                max = current;
+            }
+            current = [];
+        }
+    }
+    if(current.length > max.length){
+        max = current;
+    }
+
+    return max.length
+}
+
+console.log('Longet positive streak:',longestPositiveStreak([1, 2, -1, 3, 4, 5, 0, 6]))
+console.log('Longet positive streak:',longestPositiveStreak([-1, 0, -2]))
+console.log('Longet positive streak:',longestPositiveStreak([2, 7, 1, 8]))
+console.log('Longet positive streak:',longestPositiveStreak([]))
+
+// 整数の配列を受け取り、配列全体でちょうど2回登場する数を返す関数 findExactlyTwice(arr) を作成してください。
+// 結果には各数を1回だけ含め、元の配列に最初に登場した順に並べてください。
+
+const findExactlyTwice = (arr) =>{
+    let result = [];
+    let counts = {};
+    
+    for(let num of arr){
+        if (counts[num] === undefined) {
+            counts[num] = 1;
+        } else {
+            counts[num]++;
+        }    
+    }
+    for (let num of arr) {
+    if (counts[num] === 2 && !result.includes(num)) { //数字が２かつまだその数字がresult arrに入っていない
+        result.push(num);
+    }
+}
+    return result;
+}
+
+console.log('Find exactly twice:',findExactlyTwice([4, 2, 4, 3, 2, 2, 5, 5]))
+console.log('Find exactly twice:',findExactlyTwice([3, 1, 1, 3]))
+console.log('Find exactly twice:',findExactlyTwice([7,7,7,]))
+console.log('Find exactly twice:',findExactlyTwice([]))
