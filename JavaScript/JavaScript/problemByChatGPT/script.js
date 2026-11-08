@@ -932,3 +932,109 @@ console.log('Find exactly twice:',findExactlyTwice([4, 2, 4, 3, 2, 2, 5, 5]))
 console.log('Find exactly twice:',findExactlyTwice([3, 1, 1, 3]))
 console.log('Find exactly twice:',findExactlyTwice([7,7,7,]))
 console.log('Find exactly twice:',findExactlyTwice([]))
+
+// 英単語の配列を受け取り、文字数ごとにまとめたオブジェクトを返す関数 groupByLength(words) を作成してください。
+// 各グループ内の単語は、元の順番を保ってください。重複した単語もそのまま含めます。
+
+const groupByLength = (arr) =>{
+    let groups = {};
+    
+    for(let word of arr){
+        if(groups[word.length] === undefined){
+            groups[word.length] = [];
+        }
+        groups[word.length].push(word);
+    }    
+    
+    return groups;
+}
+
+console.log('Group By Length:',groupByLength(["cat", "hi", "dog", "apple", "to"]))
+console.log('Group By Length:',groupByLength(["a", "a", "bb"]))
+
+
+// 昇順に並んだ2つの整数配列を受け取り、すべての要素を昇順に並べた新しい
+// 配列を返す関数 mergeSortedArrays(arr1, arr2) を作成してください。
+// 重複は残します。sort() は使用しないでください。
+
+const mergeSortedArrays = (arr1,arr2) =>{
+    let result = [];
+    let newArr = [];
+
+    for (let num of arr1) {
+        result.push(num);
+    }
+    for (let num of arr2) {
+        result.push(num);
+    }
+
+    while (result.length) {
+        let smallestIdx = leastNum(result); //過去のlestNum関数を呼び出して使っている
+        newArr.push(...result.splice(smallestIdx, 1));
+    }
+
+    return newArr;
+} 
+
+console.log('Merege sorted arrays:',mergeSortedArrays([1, 4, 7], [2, 3, 8]))
+console.log('Merege sorted arrays:',mergeSortedArrays([1, 2, 2], [2, 3]))
+console.log('Merege sorted arrays:',mergeSortedArrays([], [-2, 0, 5]))
+
+const mergeSortedArrays2 = (arr1,arr2) =>{
+    let result = [];
+    let i = 0;
+    let j = 0;
+
+    while(i < arr1.length && j < arr2.length){
+        if(arr1[i] < arr2[j]){
+            result.push(arr1[i]);
+            i++;
+        }else{
+            result.push(arr2[j]);
+            j++;
+        }
+    }
+    while(i < arr1.length) {
+        result.push(arr1[i]);
+        i++;
+    }
+    while(j < arr2.length){
+        result.push(arr2[j]);
+        j++;
+    }
+    return result;
+}
+
+console.log('Merege sorted arrays2:',mergeSortedArrays2([1, 4, 7], [2, 3, 8]))
+console.log('Merege sorted arrays2:',mergeSortedArrays2([1, 2, 2], [2, 3]))
+console.log('Merege sorted arrays2:',mergeSortedArrays2([], [-2, 0, 5]))
+
+// 数値の配列と整数 k を受け取り、連続する k 個の要素の合計のうち、
+// 最大の値を返す関数 maxWindowSum(arr, k) を作成してください。
+// k は必ず 1 以上、配列の長さ以下とします。要素を飛ばして選ぶことはできません。
+
+const maxWindowSum = (arr, k) =>{
+    let i = 0;
+    let sums = [];
+
+    while (i <= arr.length - k) {
+        let window = arr.slice(i, i + k);
+        let sum = 0;
+
+        for (let num of window) {
+            sum += num;
+        }
+
+        sums.push(sum);
+        i++;
+    }
+
+    let sortedsums = sums.sort((a,b) => a - b)
+    let idx = sortedsums.length - 1;
+    return sortedsums[idx];
+}
+
+console.log('Max windows sum:',maxWindowSum([2, 1, 5, 1, 3, 2], 3)) // 9
+console.log('Max windows sum:',maxWindowSum([-4, -2, -7, -1], 2)) // 
+console.log('Max windows sum:',maxWindowSum([3, 8, 2], 1)) // 
+console.log('Max windows sum:',maxWindowSum([3, 8, 2], 3)) // 
